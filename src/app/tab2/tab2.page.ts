@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
 import { Storage } from '@ionic/storage';
+import { ServicosService } from './../servicos.service';
 
 @Component({
   selector: 'app-tab2',
@@ -13,6 +14,7 @@ export class Tab2Page implements OnInit {
    
   validations_form: FormGroup;
   errorMessage: string = '';
+  book: FormGroup;
 
   logado = 0;
  
@@ -21,7 +23,8 @@ export class Tab2Page implements OnInit {
     private navCtrl: NavController,
     private authService: AuthenticateService,
     private formBuilder: FormBuilder,
-    private storage: Storage
+    private storage: Storage,
+    private serviceFirebase : ServicosService
  
   ) { }
  
@@ -48,6 +51,27 @@ export class Tab2Page implements OnInit {
         Validators.required
       ])),
     });
+
+    this.book = this.formBuilder.group({
+      escola: new FormControl('EEM WLADIMIR RORIZ',Validators.compose([
+        // Validators.required
+      ])),
+      multimeios: new FormControl('NILTON CESAR BATISTA DA SILVA', Validators.compose([
+        // Validators.required
+      ])),
+      pratileira: new FormControl('01', Validators.compose([
+        // Validators.required
+      ])),
+      sessao: new FormControl('01', Validators.compose([
+        // Validators.required
+      ])),
+      nome: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      autor: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+    });
   }
  
  
@@ -62,6 +86,20 @@ export class Tab2Page implements OnInit {
     ]
   };
  
+  seedBook(v){
+    console.log(v.value);
+
+    this.serviceFirebase.create_NewStudent(v.value)
+    .then(resp => {
+      // this.studentName = "";
+      // this.studentAge = undefined;
+      // this.studentAddress = "";
+      console.log(resp);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  }
  
   loginUser(value){
     this.authService.loginUser(value)

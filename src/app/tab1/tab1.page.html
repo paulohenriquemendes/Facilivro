@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
+    <ion-title >
       Livros
     </ion-title>
   </ion-toolbar>
@@ -8,13 +8,13 @@
 
 <ion-content>
     
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Livros</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
+<ion-searchbar class="find" placeholder="Procure"
+></ion-searchbar>
+
+    <ion-list >
+      <ion-item *ngFor="let item of book">
         <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>1 - Karl Marx</ion-label>
+        <ion-label>{{item.nome.toUpperCase()}} | {{item.autor.toUpperCase()}}</ion-label>
       </ion-item>
     </ion-list>
 </ion-content>

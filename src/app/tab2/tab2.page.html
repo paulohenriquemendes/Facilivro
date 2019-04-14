@@ -40,6 +40,60 @@
   </form>
 </ng-container>
 <ng-container *ngIf="this.logado" padding>
-<p>asasa</p>
+<form [formGroup]="book">
+  <ion-list-header>Descrições sobre o Livro:</ion-list-header>
+  <ion-item>
+    <ion-label>Escola: </ion-label>
+    <ion-select formControlName="escola" value="EEM WLADIMIR RORIZ" okText="Ok" cancelText="Cancelar">
+      <ion-select-option value="EEM WLADIMIR RORIZ">EEM WLADIMIR RORIZ</ion-select-option>
+      <ion-select-option value="EEP X">EEP X</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Multimeios: </ion-label>
+    <ion-select formControlName="multimeios" value="NILTON CESAR BATISTA DA SILVA" okText="Ok" cancelText="Cancelar">
+      <ion-select-option value="NILTON CESAR BATISTA DA SILVA">NILTON CESAR BATISTA DA SILVA</ion-select-option>
+      <ion-select-option value="EEP X">EEP X</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Pratileira: </ion-label>
+    <ion-select formControlName="pratileira" value="01" okText="Ok" cancelText="Cancelar">
+      <ion-select-option value="01">01</ion-select-option>
+      <ion-select-option value="02">02</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Sessão: </ion-label>
+    <ion-select formControlName="sessao" value="01" okText="Ok" cancelText="Cancelar">
+      <ion-select-option value="01">01</ion-select-option>
+      <ion-select-option value="02">02</ion-select-option>
+      <ion-select-option value="03">03</ion-select-option>
+      <ion-select-option value="04">04</ion-select-option>
+      <ion-select-option value="05">05</ion-select-option>
+      <ion-select-option value="06">06</ion-select-option>
+      <ion-select-option value="07">07</ion-select-option>
+      <ion-select-option value="08">08</ion-select-option>
+      <ion-select-option value="09">09</ion-select-option>
+      <ion-select-option value="10">10</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+<ion-item>
+  <ion-label position="floating">Livro:</ion-label>
+  <ion-input formControlName="nome"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Autor:</ion-label>
+  <ion-input formControlName="autor" ></ion-input>
+</ion-item>
+<p></p>
+<ion-button expand="full" type="submit" [disabled]="!book.valid" (click)="seedBook(book)" >Enviar</ion-button>
+
+</form>
 </ng-container>
 </ion-content>
