@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="warning">
     <ion-title >
-      Livros
+      Fácilivro
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,7 +12,7 @@
 ></ion-searchbar>
 
     <ion-list >
-      <ion-item *ngFor="let item of book">
+      <ion-item *ngFor="let item of book" (click)="btnItem(item)" >
         <ion-icon slot="start" color="medium" name="book"></ion-icon>
         <ion-label>{{item.nome.toUpperCase()}} | {{item.autor.toUpperCase()}}</ion-label>
       </ion-item>

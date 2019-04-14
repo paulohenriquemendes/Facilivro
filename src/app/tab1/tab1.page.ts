@@ -1,7 +1,9 @@
-// import { NavController } from 'ionic-angular';
+import { NavController } from '@ionic/angular';
 import { DetailPage } from './../detail/detail.page';
 import { Component, OnInit } from '@angular/core';
 import { ServicosService } from './../servicos.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +14,8 @@ export class Tab1Page implements OnInit {
   book;
 
   constructor(
-    // public navCtrl: NavController,
+    public navCtrl: NavController,
+    private router: Router,
     private crudService: ServicosService) { }
 
   ngOnInit() {
@@ -29,12 +32,11 @@ export class Tab1Page implements OnInit {
       console.log(this.book);
  
     });
-
-    // btnItem(b){
-    //   this.navCtrl.goForward('detail', {b:this.book});
-    // }
-  
-  }
+}
+btnItem(b) {
+  console.log(b);
+  this.router.navigate(['/detail/', b])
+}
 }
 
 
