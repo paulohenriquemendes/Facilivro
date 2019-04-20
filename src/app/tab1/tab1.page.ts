@@ -26,7 +26,12 @@ export class Tab1Page implements OnInit {
           // id: e.payload.doc.id,
           // isEdit: false,
           nome: e.payload.doc.data()['nome'],
-          autor: e.payload.doc.data()['autor']
+          autor: e.payload.doc.data()['autor'],
+          sessao: e.payload.doc.data()['sessao'],
+          pratileira: e.payload.doc.data()['pratileira'],
+          escola: e.payload.doc.data()['escola'],
+          multimeios: e.payload.doc.data()['multimeios'],
+          sinopse: e.payload.doc.data()['sinopse'],
         };
       })
       console.log(this.book);
@@ -35,7 +40,7 @@ export class Tab1Page implements OnInit {
 }
 btnItem(b) {
   console.log(b);
-  this.router.navigate(['/detail/', b])
+  this.router.navigate(['/detail/'], {queryParams: b})
 }
 }
 

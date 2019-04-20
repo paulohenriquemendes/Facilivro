@@ -91,6 +91,12 @@
   <ion-label position="floating">Autor:</ion-label>
   <ion-input formControlName="autor" ></ion-input>
 </ion-item>
+
+<ion-item>
+  <ion-label position="floating">Sinopse:</ion-label>
+  <ion-input formControlName="sinopse" ></ion-input>
+</ion-item>
+
 <p></p>
 <ion-button expand="full" type="submit" [disabled]="!book.valid" (click)="seedBook(book)" >Enviar</ion-button>
 

@@ -71,6 +71,9 @@ export class Tab2Page implements OnInit {
       autor: new FormControl('', Validators.compose([
         Validators.required
       ])),
+      sinopse: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
     });
   }
  

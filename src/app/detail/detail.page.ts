@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -9,11 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailPage implements OnInit {
 
   getBook = null;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.getBook = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log("Entrou", this.getBook);
+    this.activatedRoute
+      .queryParams
+      .subscribe(params => this.getBook = params);
   }
 
 }

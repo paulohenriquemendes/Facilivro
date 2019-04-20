@@ -14,7 +14,7 @@
           <ion-label>ESCOLA:</ion-label>
         </ion-item-divider>
         <ion-item text-wrap>
-          <ion-label>EEM WLADIMIR RORIZ</ion-label>
+          <ion-label>{{this.getBook.escola}}</ion-label>
         </ion-item>
     </ion-item-group>
   
@@ -23,7 +23,7 @@
           <ion-label>MULTIMEIOS:</ion-label>
         </ion-item-divider>
         <ion-item text-wrap>
-          <ion-label>NILTON CESAR BATISTA DA SILVA</ion-label>
+          <ion-label>{{this.getBook.multimeios}}</ion-label>
         </ion-item>
     </ion-item-group>
   
@@ -32,7 +32,7 @@
           <ion-label>PRATILEIRA:</ion-label>
         </ion-item-divider>
         <ion-item text-wrap>
-          <ion-label>01</ion-label>
+          <ion-label>{{this.getBook.pratileira}}</ion-label>
         </ion-item>
     </ion-item-group>
   
@@ -41,7 +41,7 @@
           <ion-label>SESSÃO:</ion-label>
         </ion-item-divider>
         <ion-item text-wrap>
-          <ion-label>02</ion-label>
+          <ion-label>{{this.getBook.sessao}}</ion-label>
         </ion-item>
     </ion-item-group>
 
@@ -50,7 +50,7 @@
           <ion-label>NOME:</ion-label>
         </ion-item-divider>
         <ion-item text-wrap>
-          <ion-label>CARREGANDO...</ion-label>
+          <ion-label>{{this.getBook.nome}}</ion-label>
         </ion-item>
     </ion-item-group>
 
@@ -59,8 +59,17 @@
           <ion-label>AUTOR:</ion-label>
         </ion-item-divider>
         <ion-item text-wrap>
-          <ion-label>CARREGANDO...</ion-label>
+          <ion-label>{{this.getBook.autor}}</ion-label>
         </ion-item>
     </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>SINOPSE:</ion-label>
+      </ion-item-divider>
+      <ion-item text-wrap>
+        <ion-label>{{this.getBook.sinopse}}</ion-label>
+      </ion-item>
+  </ion-item-group>
 
 </ion-content>
