@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
 import { Storage } from '@ionic/storage';
 import { ServicosService } from './../servicos.service';
@@ -16,6 +16,8 @@ export class Tab2Page implements OnInit {
   errorMessage: string = '';
   book: FormGroup;
 
+  toast: any;
+
   logado = 0;
  
   loaderToShow: any;
@@ -26,6 +28,7 @@ export class Tab2Page implements OnInit {
     private storage: Storage,
     private serviceFirebase : ServicosService,
     public loadingController: LoadingController,
+    private toastController: ToastController,
  
   ) { }
  
@@ -91,13 +94,13 @@ export class Tab2Page implements OnInit {
   };
  
   seedBook(v){
-    this.showLoader();
     this.serviceFirebase.create_NewStudent(v.value)
-    .then(resp => {
-      // this.studentName = "";
-      // this.studentAge = undefined;
-      // this.studentAddress = "";
-      this.hideLoader();
+    .then(resp => {      
+      this.book["controls"]["nome"].reset();
+      this.book["controls"]["autor"].reset();
+      this.book["controls"]["sinopse"].reset();
+      this.showToast();
+      this.HideToast();
     })
     .catch(error => {
         console.log(error);
@@ -120,22 +123,17 @@ export class Tab2Page implements OnInit {
     })
   }
 
-  showLoader() {
-    this.loaderToShow = this.loadingController.create({
-      message: 'Enviando livro, aguarde.'
-    }).then((res) => {
-      res.present();
- 
-      res.onDidDismiss().then((dis) => {
-        console.log('Loading finalizado!');
-      });
+  showToast() {
+    this.toast = this.toastController.create({
+      message: 'Livro cadastrado.',
+      duration: 1000
+    }).then((toastData)=>{
+      toastData.present();
     });
   }
 
-  hideLoader() {
-    // setTimeout(() => {
-      this.loadingController.dismiss();
-    // }, 4000);
+  HideToast(){
+    this.toast = this.toastController.dismiss();
   }
  
 }

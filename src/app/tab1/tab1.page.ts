@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class Tab1Page implements OnInit {
   book;
   loaderToShow: any;
+  bookFilter = null;
 
   constructor(
     public navCtrl: NavController,
@@ -21,6 +22,7 @@ export class Tab1Page implements OnInit {
     public loadingController: LoadingController) { }
 
   ngOnInit() {
+    console.log(this.bookFilter)
     this.showLoader();
     this.crudService.read_Students().subscribe(data => {
       this.hideLoader();
@@ -42,9 +44,34 @@ export class Tab1Page implements OnInit {
  
     });
 }
+
 btnItem(b) {
-  console.log(b);
   this.router.navigate(['/detail/'], {queryParams: b})
+}
+desfoco(){
+  console.log("desfocou");
+  this.bookFilter = null;
+}
+
+buscarLivros(ev: any) {
+  const val = ev.target.value;
+
+  if (val && val.trim() != '') {
+    this.book.map((e) => {
+      if(e.nome == val){
+        this.bookFilter = e;
+        // console.log(this.bookFilter);
+       
+      }
+      
+    }
+      )
+      
+    
+  } 
+  // else {
+  //   this.livros = [];
+  // }
 }
 
 showLoader() {

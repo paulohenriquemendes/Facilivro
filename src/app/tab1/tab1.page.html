@@ -8,13 +8,27 @@
 
 <ion-content>
     
-<ion-searchbar class="find" placeholder="Procure"
+<ion-searchbar  (ionBlur)="desfoco()" class="find" placeholder="Digite o nome do livro" (ionInput)="buscarLivros($event)"
 ></ion-searchbar>
 
-    <ion-list >
+<ng-container *ngIf="(this.bookFilter == null)" padding>
+    <ion-list>
       <ion-item *ngFor="let item of book" (click)="btnItem(item)" >
         <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>{{item.nome.toUpperCase()}} | {{item.autor.toUpperCase()}}</ion-label>
+        <ion-label >{{item.nome.toUpperCase()}} | {{item.autor.toUpperCase()}}</ion-label>
       </ion-item>
     </ion-list>
+</ng-container>
+
+<ng-container *ngIf="(this.bookFilter != null)" padding>
+  <ion-list>
+    <div *ngFor="let item of book" (click)="btnItem(item)" >
+    <ion-item *ngIf="(this.bookFilter == item)">
+      <ion-icon slot="start" color="medium" name="book"></ion-icon>
+      <ion-label >{{item.nome.toUpperCase()}} | {{item.autor.toUpperCase()}}</ion-label>
+    </ion-item>
+  </div>
+  </ion-list>
+</ng-container>
+
 </ion-content>
