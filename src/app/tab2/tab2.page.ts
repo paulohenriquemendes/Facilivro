@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavController, AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
 import { Storage } from '@ionic/storage';
 import { ServicosService } from './../servicos.service';
@@ -18,13 +18,14 @@ export class Tab2Page implements OnInit {
 
   logado = 0;
  
-  constructor(
+  loaderToShow: any;
  
-    private navCtrl: NavController,
+  constructor(
     private authService: AuthenticateService,
     private formBuilder: FormBuilder,
     private storage: Storage,
-    private serviceFirebase : ServicosService
+    private serviceFirebase : ServicosService,
+    public loadingController: LoadingController,
  
   ) { }
  
@@ -90,14 +91,13 @@ export class Tab2Page implements OnInit {
   };
  
   seedBook(v){
-    console.log(v.value);
-
+    this.showLoader();
     this.serviceFirebase.create_NewStudent(v.value)
     .then(resp => {
       // this.studentName = "";
       // this.studentAge = undefined;
       // this.studentAddress = "";
-      console.log(resp);
+      this.hideLoader();
     })
     .catch(error => {
         console.log(error);
@@ -119,19 +119,24 @@ export class Tab2Page implements OnInit {
       this.errorMessage = err.message;
     })
   }
-  
-//  logado(){
-//   this.storage.get('email')
-//   .then((val) => {
-//     return true
-//   })
-//   .catch((e) => {
-//     return false
-//   });
-//  }
-  // goToRegisterPage(){
-  //   this.navCtrl.navigateForward('/register');
-  // }
+
+  showLoader() {
+    this.loaderToShow = this.loadingController.create({
+      message: 'Enviando livro, aguarde.'
+    }).then((res) => {
+      res.present();
+ 
+      res.onDidDismiss().then((dis) => {
+        console.log('Loading finalizado!');
+      });
+    });
+  }
+
+  hideLoader() {
+    // setTimeout(() => {
+      this.loadingController.dismiss();
+    // }, 4000);
+  }
  
 }
 
