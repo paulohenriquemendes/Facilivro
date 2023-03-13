@@ -14,7 +14,7 @@ Para executar o Fácilivro localmente em sua máquina, siga estas etapas:
 
 2. Clone este repositório em sua máquina:
 
-`git clone https://github.com/seunome/facilivro.git`
+`git clone https://github.com/paulohenriquemendes/facilivro.git`
 
 3. Instale as dependências do projeto:
 
